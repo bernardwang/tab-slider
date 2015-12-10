@@ -1,1 +1,1 @@
-# content-slider
+# tab-slider

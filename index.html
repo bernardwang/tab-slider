@@ -3,28 +3,43 @@
 
 <head>
 	<meta charset='utf-8'>
-	<title>Content Slider</title>
+	<title>Tab Slider</title>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<link href='main.css' rel='stylesheet'>
 </head>
 
 <body>
 	<main>
-		<div class="content-slider">
-			<div class="slider-page" data-title="Apple Watch">
-				content
-			</div>
-			<div class="slider-page" data-title="Merchant Surveys">
-				content
-			</div>
-			<div class="slider-page" data-title="Travel iOS App">
-				content
-			</div>
+		<div class="tab-slider">
+			<nav class="tab-nav">
+				<ul>
+					<li class="nav-title"><h3>Title 1</h3></li>
+					<li class="nav-title"><h3>Title 2</h3></li>
+					<li class="nav-title"><h3>Title 3</h3></li>
+					<li class="nav-title"><h3>Title 4</h3></li>
+				</ul>
+			</nav>
+			<section class="tab-content">
+				<ul class="content-wrapper">
+					<li class="content-page">
+						Content 1
+					</li>
+					<li class="content-page">
+						Content 2
+					</li>
+					<li class="content-page">
+						Content 3
+					</li>
+					<li class="content-page">
+						Content 4
+					</li>
+				</ul>
+			</section>
 		</div>
 
 	</main>
 	<script src='velocity.min.js'></script>
-	<script src='contentSlider.js'></script>
+	<script src='tabSlider.js'></script>
 	<script src='script.js'></script>
 </body>
 
