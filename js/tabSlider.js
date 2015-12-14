@@ -6,15 +6,15 @@ var TabSlider = function () {
 
 	var currIndex;
 	var maxIndex;
-	var tabs;
+
+	var selectBar;
 	var pages;
 
 	/**
 	 *	Animates page transition
 	 */
 	var updatePage = function (newIndex) {
-		//var position = -(config.width) * newIndex + 'px';
-		var position = -100/maxIndex * newIndex + '%'
+		var position = -100/maxIndex * newIndex + '%';
 		Velocity(pages, { translateX: position }, 500);
 	};
 
@@ -22,8 +22,8 @@ var TabSlider = function () {
 	 *	Selects a new tab
 	 */
 	var updateTab = function (newIndex) {
-		tabs[currIndex].className = 'nav-title';
-		tabs[newIndex].className += ' selected';
+		var position = newIndex/maxIndex * 100 + 5 +'%';
+		Velocity(selectBar, { left: position }, 500);
 	};
 
 	/**
@@ -43,13 +43,15 @@ var TabSlider = function () {
 	 *	Adds event listeners
 	 */
 	var initSlide = function (slider) {
-		tabs = slider.children[0].children[0].children;
+		var tabs = slider.children[0].children[0].children;
+		selectBar = slider.children[0].children[1].children[0];
 		pages = slider.children[1].children[0];
 
 		currIndex = 0;
 		maxIndex = tabs.length;
 
 		pages.style.width = 100 * maxIndex + '%';
+		selectBar.style.width = 100/maxIndex - 10 + '%';
 
 		for(var i = 0; i < maxIndex; i++) {
 			pages.children[i].style.width = 100/maxIndex + '%';
