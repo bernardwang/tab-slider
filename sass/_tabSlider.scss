@@ -9,7 +9,7 @@
 $tab-break-small: 320px;
 
 .tab-slider{
-	width: 90vw;
+	width: 100%;
 	height: 100%;
 	background-color: white;
 }
@@ -27,6 +27,10 @@ $tab-break-small: 320px;
 	border-bottom: 1px solid black;
 
 	ul{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
 		@include flexbox((
   	  display: flex,
 			flex-wrap: wrap,
@@ -81,4 +85,7 @@ $tab-break-small: 320px;
 	height: 100%;
 	padding: 20px;
 	box-sizing: border-box;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }

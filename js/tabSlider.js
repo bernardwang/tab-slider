@@ -15,6 +15,11 @@ var TabSlider = function () {
 	 */
 	var updatePage = function (newIndex) {
 		var position = -100/maxIndex * newIndex + '%';
+
+		// With JQuery
+		//$.Velocity.animate(pages, { translateX: position }, 500);
+
+		// Without JQuery
 		Velocity(pages, { translateX: position }, 500);
 	};
 
@@ -51,6 +56,11 @@ var TabSlider = function () {
 		maxIndex = tabs.length;
 
 		pages.style.width = 100 * maxIndex + '%';
+
+		if(pages.children.length != maxIndex){
+			console.log('Incorrect number of pages in tab slider');
+			maxIndex = Math.min(pages.children.length, maxIndex);
+		}
 
 		for(var i = 0; i < maxIndex; i++) {
 			pages.children[i].style.width = 100/maxIndex + '%';
