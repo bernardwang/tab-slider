@@ -118,10 +118,14 @@ $tab-break-medium: 500px;
 	height: 100%;
 }
 
-.content-page{
+.content-wrapper{
 	margin: 0;
 	padding: 0;
-	padding: 20px;
+}
+
+.content-page{
+	margin: 0;
+	padding: 1vw;
 
 	box-sizing: border-box;
 	list-style: none;
@@ -139,8 +143,7 @@ $tab-break-medium: 500px;
 		display: none;
 	}
 	.nav-title{
-		margin-left: auto;
-		margin-right: auto;
+
 		&.selected{
 			border-bottom: 5px solid black;
 		}

@@ -4,6 +4,7 @@
 
 var TabSlider = function () {
 
+	// True if using with JQuery
 	var usingJQuery = false;
 
 	var currIndex;
@@ -60,6 +61,7 @@ var TabSlider = function () {
 	 *	Adds event listeners
 	 */
 	var initSlide = function (slider) {
+		// Init variables
 		tabs = slider.getElementsByClassName('nav-title');
 		selectBar = slider.getElementsByClassName('select-bar')[0];
 		pages = slider.getElementsByClassName('content-page');
@@ -67,14 +69,17 @@ var TabSlider = function () {
 		currIndex = 0;
 		maxIndex = tabs.length;
 
-		//pages.style.width = 100 * maxIndex + '%';
-		selectBar.style.width = 100/maxIndex - 10 + '%';
+		// Set nav selection bar
+		selectBar.style.width = 100/maxIndex - 10 + '%'; 	// bar is slightly smaller than title width
+		selectBar.style.left = '5%';	// default is first page
 
+		// Check for correct markup
 		if(pages.length != maxIndex){
 			console.log('Incorrect number of pages in tab slider');
 			maxIndex = Math.min(pages.length, maxIndex);
 		}
 
+		// Add event listeners to nav bar
 		for(var i = 0; i < maxIndex; i++) {
 			pages[i].style.width = 100/maxIndex + '%';
 			(function(index){

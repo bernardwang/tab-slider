@@ -117,33 +117,33 @@
 }
 
 /* line 121, ../sass/_tabSlider.scss */
-.content-page {
+.content-wrapper {
   margin: 0;
   padding: 0;
-  padding: 20px;
+}
+
+/* line 126, ../sass/_tabSlider.scss */
+.content-page {
+  margin: 0;
+  padding: 1vw;
   box-sizing: border-box;
   list-style: none;
   display: none;
 }
 
 @media screen and (max-width: 700px) {
-  /* line 133, ../sass/_tabSlider.scss */
+  /* line 137, ../sass/_tabSlider.scss */
   .nav-wrapper {
     -webkit-flex-direction: column;
     flex-direction: column;
   }
 
-  /* line 138, ../sass/_tabSlider.scss */
+  /* line 142, ../sass/_tabSlider.scss */
   .nav-select {
     display: none;
   }
 
-  /* line 141, ../sass/_tabSlider.scss */
-  .nav-title {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  /* line 144, ../sass/_tabSlider.scss */
+  /* line 147, ../sass/_tabSlider.scss */
   .nav-title.selected {
     border-bottom: 5px solid black;
   }
