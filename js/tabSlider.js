@@ -4,32 +4,43 @@
 
 var TabSlider = function () {
 
+	var usingJQuery = false;
+
 	var currIndex;
 	var maxIndex;
 
 	var tabs;
+	var selectBar;
 	var pages;
 
 	/**
 	 *	Animates page transition
 	 */
 	var updatePage = function (newIndex) {
-		var position = -100/maxIndex * newIndex + '%';
+		pages[currIndex].style.display = 'none';
+		pages[newIndex].style.display = 'block';	// prevent flashing
 
-		// With JQuery
-		//$.Velocity.animate(pages, { translateX: position }, 500);
-
-		// Without JQuery
-		Velocity(pages, { translateX: position }, 500);
+		if(usingJQuery){
+			$.Velocity.animate(pages[newIndex], 'fadeIn', 500);
+		} else {
+			Velocity(pages[newIndex], 'fadeIn', 500);
+		}
 	};
 
 	/**
 	 *	Selects a new tab
 	 */
 	var updateTab = function (newIndex) {
+		var position = newIndex/maxIndex * 100 + 5 +'%';
+
+		if(usingJQuery){
+			$.Velocity.animate(selectBar, { left: position }, 500);
+		} else {
+			Velocity(selectBar, { left: position }, 500);
+		}
+
 		tabs[currIndex].className = 'nav-title';
 		tabs[newIndex].className += ' selected';
-		currIndex = newIndex;
 	};
 
 	/**
@@ -49,21 +60,23 @@ var TabSlider = function () {
 	 *	Adds event listeners
 	 */
 	var initSlide = function (slider) {
-		tabs = slider.children[0].children[0].children;
-		pages = slider.children[1].children[0];
+		tabs = slider.getElementsByClassName('nav-title');
+		selectBar = slider.getElementsByClassName('select-bar')[0];
+		pages = slider.getElementsByClassName('content-page');
 
 		currIndex = 0;
 		maxIndex = tabs.length;
 
-		pages.style.width = 100 * maxIndex + '%';
+		//pages.style.width = 100 * maxIndex + '%';
+		selectBar.style.width = 100/maxIndex - 10 + '%';
 
-		if(pages.children.length != maxIndex){
+		if(pages.length != maxIndex){
 			console.log('Incorrect number of pages in tab slider');
-			maxIndex = Math.min(pages.children.length, maxIndex);
+			maxIndex = Math.min(pages.length, maxIndex);
 		}
 
 		for(var i = 0; i < maxIndex; i++) {
-			pages.children[i].style.width = 100/maxIndex + '%';
+			pages[i].style.width = 100/maxIndex + '%';
 			(function(index){
 				tabs[index].addEventListener('click', function(){
 					update(index);
