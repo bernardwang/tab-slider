@@ -4,9 +4,6 @@
 
 var TabSlider = function () {
 
-	// True if using with JQuery
-	var usingJQuery = false;
-
 	var currIndex;
 	var maxIndex;
 
@@ -21,7 +18,7 @@ var TabSlider = function () {
 		pages[currIndex].style.display = 'none';
 		pages[newIndex].style.display = 'block';	// prevent flashing
 
-		if(usingJQuery){
+		if(window.jQuery){
 			$.Velocity.animate(pages[newIndex], 'fadeIn', 500);
 		} else {
 			Velocity(pages[newIndex], 'fadeIn', 500);
@@ -34,7 +31,7 @@ var TabSlider = function () {
 	var updateTab = function (newIndex) {
 		var position = newIndex/maxIndex * 100 + 5 +'%';
 
-		if(usingJQuery){
+		if(window.jQuery){
 			$.Velocity.animate(selectBar, { left: position }, 500);
 		} else {
 			Velocity(selectBar, { left: position }, 500);
