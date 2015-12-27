@@ -4,6 +4,20 @@
 //
 //
 
+@import 'compass/css3';
+
+$tab-break-small: 320px;
+$tab-break-medium: 600px;
+
+$nav-color: grey;
+$nav-select-color: black;
+
+// Helper mixin for slider colors
+@mixin button-color($default, $select) {
+	$nav-color: $default;
+	$nav-select-color: $select;
+}
+
 /*
 	Slider markup reference for styling
 
@@ -15,7 +29,7 @@
 				<li class="nav-title"><a href="#">Tab 3</a></li>
 				<li class="nav-title"><a href="#">Tab 4</a></li>
 			</ul>
-			<div class="nav-select">
+			<div class="select-wrapper">
  					<div class="select-bar"></div>
 			</div>
 		</nav>
@@ -38,36 +52,31 @@
 	</div>
 */
 
-@import 'compass/css3';
-
-$tab-break-small: 320px;
-$tab-break-medium: 500px;
-
 .tab-slider{
 	width: 100%;
 	height: 100%;
-	background-color: white;
+	color: $nav-color;
 }
 
-.tab-nav, .tab-content{
-	padding-left: 10vw;
-	padding-right: 10vw;
+// Slider inner content
+.nav-wrapper, .select-wrapper, .content-wrapper{
+	margin-left: 10vw;
+	margin-right: 10vw;
 }
 
 .tab-nav{
 	width: 100%;
 	height: 100%;
-	margin-top: 20px;					// Change Nav spacing here
-	margin-bottom: 20px;
 	position: relative;
 	box-sizing: border-box;
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid $nav-color;
 }
 
 .nav-wrapper{
 	list-style: none;
-	margin: 0;
 	padding: 0;
+	margin-top: 10px;					// Change Nav spacing here
+	margin-bottom: 10px;
 
 	@include flexbox((
 	  display: flex,
@@ -84,8 +93,6 @@ $tab-break-medium: 500px;
 	margin-right: 2%;
 	text-align: center;
 	flex: 1;
-
-	border-bottom: 5px solid white;
 	list-style: none;
 
 	a{
@@ -93,16 +100,21 @@ $tab-break-medium: 500px;
 		margin: 0;
 		text-decoration: none;
 		word-wrap: break-word;
-		color: black;
 		font-size: 20px;
+		color: $nav-color;
+		@include transition(color, 0.5s);
+	}
+
+	&.selected{
+		a{
+			color: $nav-select-color;
+		}
 	}
 }
 
-.nav-select{
-	width: 100%;
+.select-wrapper{
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	padding: 0;
 	position: relative;
 }
 
@@ -110,7 +122,7 @@ $tab-break-medium: 500px;
 	height: 5px;
 	position: absolute;
 	bottom: 0;
-	background-color: black;
+	background-color: $nav-select-color;
 }
 
 .tab-content{
@@ -119,7 +131,7 @@ $tab-break-medium: 500px;
 }
 
 .content-wrapper{
-	margin: 0;
+	//margin: 0;
 	padding: 0;
 }
 
@@ -133,19 +145,19 @@ $tab-break-medium: 500px;
 	display: none;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: $tab-break-medium) {
 	.nav-wrapper{
 		@include flexbox((
 			flex-direction: column
 		));
 	}
-	.nav-select{
+	.select-wrapper{
 		display: none;
 	}
 	.nav-title{
-
+		border-bottom: 6px solid transparent;
 		&.selected{
-			border-bottom: 5px solid black;
+			border-bottom: 6px solid $nav-select-color;
 		}
 	}
 }

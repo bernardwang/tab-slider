@@ -9,6 +9,7 @@ var TabSlider = function () {
 
 	var tabs;
 	var selectBar;
+	var selectSpacing;
 	var pages;
 
 	/**
@@ -19,9 +20,9 @@ var TabSlider = function () {
 		pages[newIndex].style.display = 'block';	// prevent flashing
 
 		if(window.jQuery){
-			$.Velocity.animate(pages[newIndex], 'fadeIn', 500);
+			$.Velocity.animate(pages[newIndex], 'fadeIn', 1000);
 		} else {
-			Velocity(pages[newIndex], 'fadeIn', 500);
+			Velocity(pages[newIndex], 'fadeIn', 1000);
 		}
 	};
 
@@ -29,7 +30,7 @@ var TabSlider = function () {
 	 *	Selects a new tab
 	 */
 	var updateTab = function (newIndex) {
-		var position = newIndex/maxIndex * 100 + 5 +'%';
+		var position = newIndex/maxIndex * 100 + selectSpacing/2 +'%';
 
 		if(window.jQuery){
 			$.Velocity.animate(selectBar, { left: position }, 500);
@@ -67,8 +68,9 @@ var TabSlider = function () {
 		maxIndex = tabs.length;
 
 		// Set nav selection bar
-		selectBar.style.width = 100/maxIndex - 10 + '%'; 	// bar is slightly smaller than title width
-		selectBar.style.left = '5%';	// default is first page
+		selectSpacing = 130/Math.pow(maxIndex,2);
+		selectBar.style.width = 100/maxIndex - selectSpacing + '%';
+		selectBar.style.left = selectSpacing/2+'%';
 
 		// Check for correct markup
 		if(pages.length != maxIndex){
